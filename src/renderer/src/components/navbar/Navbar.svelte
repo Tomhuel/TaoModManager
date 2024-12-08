@@ -17,6 +17,10 @@
 		await window.electron.decompress(e.target.files[0].path);
 	};
 
+    const fixModels = async () => {
+		await window.electron.fixModels();
+	};
+
     const searchMods = async () => {
         dispatcher("search");
     }
@@ -48,7 +52,7 @@
             <input type="text" class="bg-dark border-light-blue rounded-input text-light px-4 h-full border focus-visible:outline-none py-1" bind:value={search} on:input={searchMods} placeholder="Search...">
         </div>
         <div class="flex gap-3">
-            <button title="Reload Mods">
+            <button title="Reload Mods" on:click={fixModels} class="hover:rotate-180 transition-transform duration-700">
                 <Reset className="" />
             </button>
             <SettingsModal />

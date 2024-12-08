@@ -1,11 +1,14 @@
 import { electronApp, is, optimizer } from "@electron-toolkit/utils";
-import { app, BrowserWindow, shell } from "electron";
+import { app, BrowserWindow, dialog, shell } from "electron";
 import path from "node:path";
 import icon from '../../../resources/icon.png?asset';
 import { bootstrap } from "..";
 import handleEvent from "../events/eventHandler";
 
 export class TaoModManagerApp {
+
+    static app = app;
+
     static async start() {
         handleEvent();
         
@@ -73,5 +76,9 @@ export class TaoModManagerApp {
         } else {
             mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
         }
+    }
+
+    public static showError(title: string, message: string) {
+        dialog.showErrorBox(title, message);
     }
 }

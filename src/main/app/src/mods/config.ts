@@ -33,7 +33,7 @@ export async function getGenshinExecPath() {
     }
 
     if (!genshinPath) {
-        return 'not configured';
+        throw new Error('Genshin Impact executable not found!');
     }
     return genshinPath
 }

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import ResetButton from "../../navbar/resetButton/resetButton.svelte";
 	import Settings from "../../../icons/settings.svelte";
 	import ModalTitle from "../default/modalTitle.svelte";
 	import { onMount } from "svelte";
@@ -19,10 +18,6 @@
 	onMount(() => {
 		getGenshinPath();
 	});
-
-	const fixModels = async () => {
-		await window.electron.fixModels();
-	};
 </script>
 
 <ModalTitle title="Settings" modalBodyClassname="p-4">
@@ -52,8 +47,5 @@
 				/>
 			</div>
 		</form>
-		<div>
-			<ResetButton on:click={fixModels} />
-		</div>
 	</div>
 </ModalTitle>

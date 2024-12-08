@@ -22,7 +22,6 @@
 		mods = mods.filter((mod) =>
 			mod.name.toLowerCase().includes(search.toLowerCase()),
 		);
-		console.log(search);
 	};
 </script>
 

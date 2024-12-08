@@ -10,6 +10,8 @@ import { deleteMod } from "../app/src/mods/deleteMod";
 import { disableMod } from "../app/src/mods/disableMod";
 import { enableMod } from "../app/src/mods/enableMod";
 import { setModName } from "../app/src/mods/setModName";
+import { TaoModManagerApp } from "../app/app";
+import fs from 'node:fs';
 
 
 /**
@@ -19,12 +21,16 @@ import { setModName } from "../app/src/mods/setModName";
 export default function handleEvent() {
 
     ipcMain.handle('decompress', async (_, args) => {
-        let userModPath: string = args[0];
-        let ext = userModPath.substring(userModPath.lastIndexOf('.') + 1);
-        switch (ext) {
-            case 'zip': decompressZipMod(userModPath); break;
-            case 'rar': decompressRarMod(userModPath); break;
-            default: return;
+        try {
+            let userModPath: string = args[0];
+            let ext = userModPath.substring(userModPath.lastIndexOf('.') + 1);
+            switch (ext) {
+                case 'zip': decompressZipMod(userModPath); break;
+                case 'rar': decompressRarMod(userModPath); break;
+                default: TaoModManagerApp.showError('Uncompatible file', 'File must be .zip or .rar');
+            }
+        } catch (err) {
+            TaoModManagerApp.showError('Error', 'Error decompressing mod.');
         }
     });
 
@@ -33,7 +39,11 @@ export default function handleEvent() {
     });
 
     ipcMain.handle('setGenshinPath', async (_, args) => {
-        await setGenshinExecPath(args[0]);
+        try {
+            await setGenshinExecPath(args[0]);
+        } catch (err) {
+            TaoModManagerApp.showError('Error', 'Error setting Genshin Impact path. Please try again.');
+        }
     });
 
     ipcMain.handle('play', async (_, __) => {
@@ -46,6 +56,10 @@ export default function handleEvent() {
     });
 
     ipcMain.handle('fixModels', async (_, __) => {
+        if (!fs.existsSync(MODELFIXEREXECUTABLE)) {
+            TaoModManagerApp.showError('Error', 'fixer file not found!');
+            return;
+        }
         await execute(MODELFIXEREXECUTABLE);
     });
 
