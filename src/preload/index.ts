@@ -25,12 +25,17 @@ function invoke(names: string[]) {
 
 const api = invoke(names);
 
+const bridge = {
+  updateMessage: (callback) => ipcRenderer.on('update-message', callback),
+};
+
 // Use `contextBridge` APIs to expose Electron APIs to
 // renderer only if context isolation is enabled, otherwise
 // just add to the DOM global.
 if (process.contextIsolated) {
   try {
-    contextBridge.exposeInMainWorld('electron', api)
+    contextBridge.exposeInMainWorld('electron', api);
+    contextBridge.exposeInMainWorld('bridge', bridge);
 //    contextBridge.exposeInMainWorld('api', api)
   } catch (error) {
     console.error(error)
