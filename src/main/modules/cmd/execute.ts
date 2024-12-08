@@ -1,5 +1,6 @@
 import { execFile, spawn } from "child_process"
 import path from "path"
+import fs from 'node:fs';
 
 export async function execute(execPath) {
     const dir = path.dirname(execPath);
@@ -14,10 +15,12 @@ export async function spawnProcess(path, detached: boolean = false, workingDir: 
     try {
         const options = workingDir ? { cwd: workingDir } : {};
         console.log(`Executing ${path} ${workingDir ? `at ${workingDir}` : ''}`);
+        if (!fs.existsSync(path)) {
+            throw new Error('Executable not found. Please check your configuration.');
+        }
         let child = spawn(path, [], { ...options, detached });
         child.unref();
     } catch (error: any) {
-        console.error('Error executing file:', error.message);
         if (error.stdout) {
             console.error('stdout:', error.stdout.toString());
         }

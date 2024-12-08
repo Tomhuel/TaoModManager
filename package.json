@@ -1,10 +1,15 @@
 {
   "name": "tao-mod-manager",
-  "version": "1.0.0",
-  "description": "An Electron application with Svelte and TypeScript",
+  "version": "1.1.0",
+  "description": "An Electron app to anage Genshin Impact models easily using GI-Model-Importer underground.",
   "main": "./out/main/index.js",
   "author": "LukaLaKuka",
-  "homepage": "https://electron-vite.org",
+  "homepage": "https://github.com/LukaLaKuka/TaoModManager",
+  "repository": "https://github.com/LukaLaKuka/TaoModManager",
+  "publish": {
+    "provider": "github",
+    "releaseType": "release"
+  },
   "scripts": {
     "format": "prettier --plugin prettier-plugin-svelte --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
@@ -25,6 +30,7 @@
     "@electron-toolkit/utils": "^3.0.0",
     "@tomhuel/jsonhandler": "^1.0.1",
     "decompress": "^4.2.1",
+    "electron-updater": "^6.3.9",
     "fs-extra": "^11.2.0",
     "node-unrar-js": "^2.0.2"
   },
@@ -50,5 +56,13 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.2",
     "vite": "^5.3.1"
+  },
+  "build": {
+    "appId": "com.lukalakuka.tao-mod-manager",
+    "productName": "Tao Mod Manager",
+    "win": "nsis",
+    "directories": {
+      "output": "dist"
+    }
   }
 }

@@ -13,12 +13,10 @@
   };
 
   const enableMod = async () => {
-    console.log("ENABLE");
     await window.electron.enableMod(realModName);
   };
 
   const disableMod = async () => {
-    console.log("DISABLE");
     await window.electron.disableMod(realModName);
   };
 

@@ -1,11 +1,18 @@
 import { electronApp, is, optimizer } from "@electron-toolkit/utils";
-import { app, BrowserWindow, shell } from "electron";
+import { app, BrowserWindow, dialog, shell } from "electron";
 import path from "node:path";
 import icon from '../../../resources/icon.png?asset';
 import { bootstrap } from "..";
 import handleEvent from "../events/eventHandler";
+import { autoUpdater, AppUpdater } from "electron-updater";
+
+autoUpdater.autoDownload = false;
+autoUpdater.autoInstallOnAppQuit = false;
 
 export class TaoModManagerApp {
+
+    static app = app;
+
     static async start() {
         handleEvent();
         
@@ -13,6 +20,9 @@ export class TaoModManagerApp {
         // initialization and is ready to create browser windows.
         // Some APIs can only be used after this event occurs.
         app.whenReady().then(() => {
+
+            autoUpdater.checkForUpdates();
+
             // Set app user model id for windows
             electronApp.setAppUserModelId('com.electron')
 
@@ -54,7 +64,9 @@ export class TaoModManagerApp {
                 preload: path.join(__dirname, '../preload/index.js'),
                 sandbox: false
             }
-        })
+        });
+
+        TaoModManagerApp.setupAutoUpdaterListeners(mainWindow);
 
         mainWindow.on('ready-to-show', async () => {
             mainWindow.show();
@@ -64,7 +76,7 @@ export class TaoModManagerApp {
         mainWindow.webContents.setWindowOpenHandler((details) => {
             shell.openExternal(details.url)
             return { action: 'deny' }
-        })
+        });
 
         // HMR for renderer base on electron-vite cli.
         // Load the remote URL for development or the local html file for production.
@@ -73,5 +85,27 @@ export class TaoModManagerApp {
         } else {
             mainWindow.loadFile(path.join(__dirname, '../renderer/index.html'))
         }
+    }
+
+    private static updateMessage(window: BrowserWindow) {
+        window.webContents.send('update-message', 'New Update avaiable. Please restart.');
+    }
+
+    public static showError(title: string, message: string) {
+        dialog.showErrorBox(title, message);
+    }
+    public static setupAutoUpdaterListeners(window: BrowserWindow) {
+        autoUpdater.on('update-available', () => {
+            dialog.showMessageBox({
+                type: 'info',
+                title: 'Update Available',
+                message: 'A new update is available. Do you want to update now?',
+                buttons: ['Yes', 'No'],
+                defaultId: 0,
+                cancelId: 1
+            });
+            TaoModManagerApp.updateMessage(window);
+            autoUpdater.downloadUpdate();
+        });
     }
 }
