@@ -4,14 +4,21 @@
     export let modalBodyClassname: string = "p-5";
 
     let displayModal = false;
+
+    const closeModal = () => {
+        displayModal = false;
+        document.body.style.overflow = "visible";
+    }
+
+    const openModal = () => {
+        document.body.style.overflow = "hidden";
+        displayModal = true;
+    }
 </script>
 
 <!-- Button -->
 <button
-    on:click={() => {
-        document.body.style.overflow = "hidden";
-        displayModal = true;
-    }}
+    on:click={openModal}
     class={buttonClassname} title={title}><slot name="buttonContent" /></button
 >
 <!-- Modal Body -->
@@ -30,10 +37,7 @@
             <div class="flex p-5 border-b border-light w-full justify-between items-center">
                 <span class="text-light text-2xl font-abz">{title}</span>
                 <button
-                    on:click={() => {
-                        displayModal = false;
-                        document.body.style.overflow = "visible";
-                    }}
+                    on:click={closeModal}
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

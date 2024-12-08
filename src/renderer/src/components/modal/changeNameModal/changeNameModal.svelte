@@ -18,7 +18,7 @@
   <span class=" text-light-blue font-abz hover:underline" slot="buttonContent"
     >Change name...</span
   >
-  <form class="flex justify-between gap-5" on:submit|preventDefault>
+  <form class="flex justify-between gap-5" on:submit={updateName}>
     <input
       type="text"
       class="col-span-3 bg-gray rounded-input text-light p-1 focus-visible:outline-none font-abz overflow-x-scroll w-full"

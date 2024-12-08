@@ -2,6 +2,7 @@
 	import Navbar from "./components/navbar/Navbar.svelte";
 	import Modcard from "./components/card/modcard.svelte";
 	import { onMount } from "svelte";
+	import { searchFilter } from "./global/store";
 
 	const getMods = async () => {
 		mods = await window.electron.getMods();
@@ -9,14 +10,19 @@
 
 	let mods = [];
 
+	let search = "";
+
 	onMount(async () => {
 		await getMods();
 	});
 
-	const filterMods = async (e) => {
-		const { detail: search } = e;
-    await getMods();
-    mods = mods.filter((mod) => mod.name.toLowerCase().includes(search.toLowerCase()));
+	const filterMods = async () => {
+		search = $searchFilter; // `search` toma el valor del store
+		await getMods();
+		mods = mods.filter((mod) =>
+			mod.name.toLowerCase().includes(search.toLowerCase()),
+		);
+		console.log(search);
 	};
 </script>
 
@@ -29,7 +35,7 @@
 				active={mod.status === "ENABLED"}
 				realModName={mod.realname}
 				path={mod.path}
-				on:reload={getMods}
+				on:reload={filterMods}
 			/>
 		{/each}
 	</div>

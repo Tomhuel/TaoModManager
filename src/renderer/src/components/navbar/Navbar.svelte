@@ -5,18 +5,20 @@
 	import Import from "../../icons/import.svelte";
 	import Reset from "../../icons/reset.svelte";
 	import { createEventDispatcher } from "svelte";
+    import { searchFilter } from "../../global/store";
+
+    let search = '';
+
+    $: searchFilter.set(search);
 
     const dispatcher = createEventDispatcher();
     
 	const importCompress = async (e) => {
 		await window.electron.decompress(e.target.files[0].path);
-		await getMods();
 	};
 
-    let search = "";
-
     const searchMods = async () => {
-        dispatcher("search", search);
+        dispatcher("search");
     }
 </script>
 
