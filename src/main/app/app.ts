@@ -4,7 +4,7 @@ import path from "node:path";
 import icon from '../../../resources/icon.png?asset';
 import { bootstrap } from "..";
 import handleEvent from "../events/eventHandler";
-import { autoUpdater, AppUpdater } from "electron-updater";
+import { autoUpdater } from "electron-updater";
 
 autoUpdater.autoDownload = false;
 autoUpdater.autoInstallOnAppQuit = false;

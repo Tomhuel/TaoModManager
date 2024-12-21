@@ -18,15 +18,15 @@ Coming soon website & User's guide...
 ## Authors
 
 Design:
-- [LukaLaKuka](https://github.com/LukaLaKuka)
+- [Tomhuel](https://github.com/Tomhuel)
 - [dmf347](https://github.com/dmf347)
 
 UX:
-- [LukaLaKuka](https://github.com/LukaLaKuka)
+- [Tomhuel](https://github.com/Tomhuel)
 - [dmf347](https://github.com/dmf347)
 
 Coding:
-- [LukaLaKuka](https://github.com/LukaLaKuka)
+- [Tomhuel](https://github.com/Tomhuel)
 
 Loader:
 - [GI-Model-Importer](https://github.com/SilentNightSound/GI-Model-Importer) by [SilentNightSoind](https://github.com/SilentNightSound)
