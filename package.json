@@ -1,11 +1,11 @@
 {
   "name": "tao-mod-manager",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "An Electron app to anage Genshin Impact models easily using GI-Model-Importer underground.",
   "main": "./out/main/index.js",
-  "author": "LukaLaKuka",
-  "homepage": "https://github.com/LukaLaKuka/TaoModManager",
-  "repository": "https://github.com/LukaLaKuka/TaoModManager",
+  "author": "Tomhuel",
+  "homepage": "https://github.com/Tomhuel/TaoModManager",
+  "repository": "https://github.com/Tomhuel/TaoModManager",
   "publish": {
     "provider": "github",
     "releaseType": "release"
@@ -56,13 +56,5 @@
     "tslib": "^2.6.3",
     "typescript": "^5.5.2",
     "vite": "^5.3.1"
-  },
-  "build": {
-    "appId": "com.lukalakuka.tao-mod-manager",
-    "productName": "Tao Mod Manager",
-    "win": "nsis",
-    "directories": {
-      "output": "dist"
-    }
   }
 }

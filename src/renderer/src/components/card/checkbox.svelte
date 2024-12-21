@@ -34,7 +34,7 @@
     }
 
     .slider {
-        background-color: #ccc;
+        background-color: #a3a3a3;
         bottom: 0;
         cursor: pointer;
         left: 0;
