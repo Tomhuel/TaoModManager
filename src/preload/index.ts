@@ -13,6 +13,7 @@ const names = [
   'openDir',
   'deleteMod',
   'setModName',
+		'getVersion',
 ];
 
 function invoke(names: string[]) {

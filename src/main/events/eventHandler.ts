@@ -15,73 +15,79 @@ import fs from 'node:fs';
 
 
 /**
- * Event Handler (IPC events emitted by front)
- * @param app Electron's Application
- */
+	* Event Handler (IPC events emitted by front)
+	* @param app Electron's Application
+	*/
 export default function handleEvent() {
 
-    ipcMain.handle('decompress', async (_, args) => {
-        try {
-            let userModPath: string = args[0];
-            let ext = userModPath.substring(userModPath.lastIndexOf('.') + 1);
-            switch (ext) {
-                case 'zip': decompressZipMod(userModPath); break;
-                case 'rar': decompressRarMod(userModPath); break;
-                default: TaoModManagerApp.showError('Uncompatible file', 'File must be .zip or .rar');
-            }
-        } catch (err) {
-            TaoModManagerApp.showError('Error', 'Error decompressing mod.');
-        }
-    });
+	ipcMain.handle('decompress', async (_, args) => {
+		try {
+			let userModPath: string = args[0];
+			let ext = userModPath.substring(userModPath.lastIndexOf('.') + 1);
+			switch (ext) {
+				case 'zip': decompressZipMod(userModPath); break;
+				case 'rar': decompressRarMod(userModPath); break;
+				default: TaoModManagerApp.showError('Uncompatible file', 'File must be .zip or .rar');
+			}
+		} catch (err) {
+			TaoModManagerApp.showError('Error', 'Error decompressing mod.');
+		}
+	});
 
-    ipcMain.handle('getGenshinPath', async (_, __) => {
-        return (await getGenshinExecPath());
-    });
+	ipcMain.handle('getGenshinPath', async (_, __) => {
+		return (await getGenshinExecPath());
+	});
 
-    ipcMain.handle('setGenshinPath', async (_, args) => {
-        try {
-            await setGenshinExecPath(args[0]);
-        } catch (err) {
-            TaoModManagerApp.showError('Error', 'Error setting Genshin Impact path. Please try again.');
-        }
-    });
+	ipcMain.handle('setGenshinPath', async (_, args) => {
+		try {
+			await setGenshinExecPath(args[0]);
+		} catch (err) {
+			TaoModManagerApp.showError('Error', 'Error setting Genshin Impact path. Please try again.');
+		}
+	});
 
-    ipcMain.handle('play', async (_, __) => {
-        await startGame()
-    });
+	ipcMain.handle('play', async (_, __) => {
+		await startGame()
+	});
 
-    ipcMain.handle('getMods', async (_, __) => {
-        let MR = new ModRepository();
-        return await MR.get();
-    });
+	ipcMain.handle('getMods', async (_, __) => {
+		let MR = new ModRepository();
+		return await MR.get();
+	});
 
-    ipcMain.handle('fixModels', async (_, __) => {
-        if (!fs.existsSync(MODELFIXEREXECUTABLE)) {
-            TaoModManagerApp.showError('Error', 'fixer file not found!');
-            return;
-        }
-        await execute(MODELFIXEREXECUTABLE);
-    });
+	ipcMain.handle('fixModels', async (_, __) => {
+		if (!fs.existsSync(MODELFIXEREXECUTABLE)) {
+			TaoModManagerApp.showError('Error', 'fixer file not found!');
+			return;
+		}
+		await execute(MODELFIXEREXECUTABLE);
+	});
 
-    ipcMain.handle('enableMod', async (_, args) => {
-        enableMod(args[0]);
+	ipcMain.handle('enableMod', async (_, args) => {
+		enableMod(args[0]);
 
-    });
+	});
 
-    ipcMain.handle('disableMod', async (_, args) => {
-        disableMod(args[0]);
+	ipcMain.handle('disableMod', async (_, args) => {
+		disableMod(args[0]);
 
-    });
+	});
 
-    ipcMain.handle('openDir', async (_, args) => {
-        openDir(args[0]);
-    });
+	ipcMain.handle('openDir', async (_, args) => {
+		openDir(args[0]);
+	});
 
-    ipcMain.handle('deleteMod', async (_, args) => {
-        await deleteMod(args[0]);
-    });
+	ipcMain.handle('deleteMod', async (_, args) => {
+		await deleteMod(args[0]);
+	});
 
-    ipcMain.handle('setModName', async (_, args) => {
-        await setModName(args[0], args[1]);
-    });
+	ipcMain.handle('setModName', async (_, args) => {
+		await setModName(args[0], args[1]);
+	});
+
+	ipcMain.handle('getVersion', async() => {
+		const version = TaoModManagerApp.getVersion();
+		console.log(version);
+		return version
+	});
 }

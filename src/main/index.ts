@@ -4,7 +4,7 @@ import { setupProject } from "./setup/setupDirs";
 import { app } from "electron";
 
 export const bootstrap = async () => {
-  await setupProject(app);
+	await setupProject(app);
 };
 
 console.log(`Application executing: ${APPDIR}`);
