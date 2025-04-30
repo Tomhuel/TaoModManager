@@ -17,4 +17,6 @@ export async function setupProject(app: Electron.App) {
             alert(`Error decompressing Loader`);
         }
     }
+
+				// TODO: Check "fixer.exe" hash and compare it with the resources fixer.exe
 }

@@ -3,8 +3,8 @@
 	import ModalTitle from "../default/modalTitle.svelte";
 	import { onMount } from "svelte";
 
-	let genshinPath: string = "";
-	let version: string = "";
+	let genshinPath: string = $state("");
+	let version: string = $state("");
 
 	const setupSettings = async (e) => {
 		e.preventDefault();
@@ -27,7 +27,9 @@
 </script>
 
 <ModalTitle title="Settings" modalBodyClassname="p-4">
-	<Settings slot="buttonContent" />
+	{#snippet buttonContent()}
+		<Settings />
+	{/snippet}
 	<div class="flex flex-col justify-center items-center">
 		<form>
 			<div class="mb-2">
@@ -50,13 +52,12 @@
 						type="file"
 						class="hidden"
 						id="selectGenshinPath"
-						on:change={setupSettings}
+						onchange={setupSettings}
 					/>
 				</div>
 			</div>
 			<div class="flex justify-end">
-				<span class="text-drown-gray text-md font-abz">Version: {version}</span
-				>
+				<span class="text-drown-gray text-md font-abz">Version: {version}</span>
 			</div>
 		</form>
 	</div>

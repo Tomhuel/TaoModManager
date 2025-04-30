@@ -65,12 +65,10 @@ export default function handleEvent() {
 
 	ipcMain.handle('enableMod', async (_, args) => {
 		enableMod(args[0]);
-
 	});
 
 	ipcMain.handle('disableMod', async (_, args) => {
 		disableMod(args[0]);
-
 	});
 
 	ipcMain.handle('openDir', async (_, args) => {
@@ -87,7 +85,6 @@ export default function handleEvent() {
 
 	ipcMain.handle('getVersion', async() => {
 		const version = TaoModManagerApp.getVersion();
-		console.log(version);
 		return version
 	});
 }
