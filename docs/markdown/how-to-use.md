@@ -3,63 +3,63 @@
 Requirements:
 - Genshin Impact's game installed
 - Tao Mod Manager installed
-- Genshin Impact "Dynamic Character Resolution" configuration disabled
+- Dynamic Character Resolution disabled in Genshin Impact settings
 
 ![Genshin Impact "Dynamic Character Resolution" configuration disabled](../screenshots/genshin_config.png)
 
 ## Step 1 - Open Tao Mod Manager
 
-Tao Mod Manager needs admin authorization because needs be able to run Genshin Impact executable.
+Tao Mod Manager requires administrator privileges, as it needs permission to run the Genshin Impact executable.
 
 ## Step 2 - Set your Genshin Impact's executable path in Settings
 
-Now we've to set our Genshin Impact's executable path in settings.
+Now we need to configure the path to your Genshin Impact executable in the settings.
 
-We need open the "settings" section in Tao Mod Manager.
+Open the **Settings** section in Tao Mod Manager.
 
 ![Open settings dialog](../screenshots/settings_1.png)
 
-Press "Select" button.
+Press **Select** button.
 
 ![Open settings dialog](../screenshots/settings_2.png)
 
-Select your Genshin's Impact executable.
+Choose your Genshin Impact executable file.
 
 > [!TIP]
-> If you don't know where's your Genshin Impact installed, you can use HoyoMix client to consult the path
+> If you're not sure where Genshin Impact is installed, you can check the path using the HoYoMix launcher.
 
 ## Step 3 - Import your first Genshin Impact's model
 
-Once you've set your Genshin's path, it's time to import our first model. You can get a lot of models from [GameBanana](https://gamebanana.com/mods/cats/18140). In this example we're gonna use [Knight Amber](https://gamebanana.com/mods/436924) made by [CR00T_R0M](https://gamebanana.com/members/2190560)
+Once the Genshin Impact path is set, you're ready to import your first model. You can find many models on [GameBanana](https://gamebanana.com/mods/cats/18140). In this example, we’ll use [Knight Amber](https://gamebanana.com/mods/436924) by [CR00T_R0M](https://gamebanana.com/members/2190560).
 
-When we install the model, we're get a `.zip` file.
+After downloading the model, you’ll have a .zip file.
 
-Now we import the model in Tao Mod Manager. Just press the **IMPORT** icon in Tao Mod Manager app:
+To import it into Tao Mod Manager, click the **IMPORT** icon:
 
 ![Import Icon](../screenshots/import.png)
 
-Then we select the `.zip`/`.rar` file:
+Then select the `.zip` or `.rar` file:
 
 ![Import Zip](../screenshots/import_2.png)
 
-And we will have the model imported succesfully:
+The model will be successfully imported:
 
 ![Model imported succesfully](../screenshots/import_3.png)
 
 ## Step 4 - Run the App
 
-There's just a "Play" Button at the top rightside of the app:
+Click the Play button in the top-right corner of the app:
 
 ![Model imported succesfully](../screenshots/play.png)
 
-And our Genshin Impact's game will start with all the models imported.
+Genshin Impact will launch with your imported models:
 
 ![Amber's skin](../screenshots/amber.png)
 
 ## Optional - Fix Skins
 
-Is it your skin bugued? It's a compability error with the models and the latest version of Genshin Impact's renderer. Tao Mod Manager have a way to fix this:
+Is your skin bugged? This could be due to compatibility issues between the model and the latest version of Genshin Impact's renderer. Tao Mod Manager includes a skin fixer:
 
 ![Fixer button](../screenshots/fixer.png)
 
-Just pressing this will fix all your **enabled** skins.
+Clicking this will automatically fix all your enabled skins.
