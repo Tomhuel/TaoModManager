@@ -30,6 +30,7 @@ export default function handleEvent() {
 				default: TaoModManagerApp.showError('Uncompatible file', 'File must be .zip or .rar');
 			}
 		} catch (err) {
+			console.error('Error decompressing mod:', err);
 			TaoModManagerApp.showError('Error', 'Error decompressing mod.');
 		}
 	});
@@ -42,6 +43,7 @@ export default function handleEvent() {
 		try {
 			await setGenshinExecPath(args[0]);
 		} catch (err) {
+			console.error('Error decompressing mod:', err);
 			TaoModManagerApp.showError('Error', 'Error setting Genshin Impact path. Please try again.');
 		}
 	});

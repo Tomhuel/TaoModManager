@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Checkbox from "./checkbox.svelte";
-	import ChangeNameModal from "../modal/changeNameModal/changeNameModal.svelte";
+	import Switch from "../bitsui/Switch.svelte";
+	import ChangeNameModal from "../modal/ChangeModNameModal.svelte";
 
 	let {
 		modName = "",
@@ -8,12 +8,6 @@
 		active = false,
 		path = "",
 		reload,
-	}: {
-		modName: string;
-		realModName: string;
-		active: boolean;
-		path: string;
-		reload: () => void;
 	} = $props();
 
 	const openDir = async (path) => {
@@ -28,18 +22,20 @@
 	const enableMod = async () => {
 		console.log("enabling mod", realModName);
 		await window.electron.enableMod(realModName);
+		reload();
 	};
 
 	const disableMod = async () => {
 		console.log("disabling mod", realModName);
 		await window.electron.disableMod(realModName);
+		reload();
 	};
 </script>
 
-<div class="border border-light bg-gray rounded-button py-3 px-4 flex flex-col">
+<div class="border border-light/35 bg-gray rounded-button py-3 px-4 flex flex-col">
 	<div class="flex justify-between gap-2">
 		<h3 class=" text-light text-3xl font-yeon truncate">{modName}</h3>
-		<Checkbox
+		<Switch
 			{active}
 			id={realModName}
 			enable={enableMod}
@@ -53,7 +49,7 @@
 	>
 	<!-- Open File System Window -->
 	<div class="flex justify-between">
-		<ChangeNameModal name={modName} realname={realModName} reload />
+		<ChangeNameModal name={modName} realname={realModName} {reload} />
 		<button
 			class=" text-primary font-abz hover:underline"
 			onclick={async () => await deleteMod(realModName)}>Delete</button

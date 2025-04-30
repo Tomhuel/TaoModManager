@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Settings from "../../../icons/settings.svelte";
-	import ModalTitle from "../default/modalTitle.svelte";
+	import Settings from "../../icons/settings.svelte";
+	import Dialog from "../bitsui/Dialog.svelte";
 	import { onMount } from "svelte";
 
 	let genshinPath: string = $state("");
@@ -26,27 +26,27 @@
 	});
 </script>
 
-<ModalTitle title="Settings" modalBodyClassname="p-4">
+<Dialog dialogTitle="Settings">
 	{#snippet buttonContent()}
 		<Settings />
 	{/snippet}
-	<div class="flex flex-col justify-center items-center">
-		<form>
+	<div class="flex flex-col justify-center items-center pt-6">
+		<form class="w-full">
 			<div class="mb-2">
-				<label for="genshinPath" class="text-light text-lg font-abz"
+				<label for="genshinPath" class="text-light text-md font-abz"
 					>Genshin Executable Path</label
 				>
 				<div class="grid grid-cols-4 mt-1 gap-3">
 					<input
 						type="text"
-						class="col-span-3 bg-gray rounded-input text-light p-1 focus-visible:outline-none font-abz overflow-x-scroll"
+						class="col-span-3 bg-gray rounded-input text-light p-1 focus-visible:outline-none font-abz overflow-x-scroll text-md"
 						value={genshinPath}
 						disabled
 					/>
 					<label
-						class="col-span-1 px-1 bg-primary text-light rounded-input font-abz flex justify-center items-center hover:bg-primary-darker transition-all duration-500"
+						class="col-span-1 px-1 bg-primary text-light rounded-input font-abz flex justify-center items-center hover:bg-primary/85 transition-all duration-500a text-md"
 						for="selectGenshinPath"
-						>Select...
+						>Select
 					</label>
 					<input
 						type="file"
@@ -57,8 +57,10 @@
 				</div>
 			</div>
 			<div class="flex justify-end">
-				<span class="text-drown-gray text-md font-abz">Version: {version}</span>
+				<span class="text-drown-gray text-md font-abz"
+					>Version: {version}</span
+				>
 			</div>
 		</form>
 	</div>
-</ModalTitle>
+</Dialog>
