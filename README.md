@@ -36,6 +36,9 @@ We made this desktop app with:
 - ElectronJS
 - GI Model Importer
 
+> [!NOTE]
+> If you are interested in viewing more details, click [here](https://deepwiki.com/Tomhuel/TaoModManager).
+
 ## Authors
 
 Design:
